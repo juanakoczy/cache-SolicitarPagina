@@ -57,10 +57,10 @@ Pagina * solicitarPagina (Cache * cache, int numeroDePagina) { //solicita una pa
 
         aux = newPagina(numeroDePagina); //aux es una nueva pagina
 
-        if (cache->capacidad == cache->tam){ {//la cache esta llena
+        if (cache->capacidad == cache->tam){ //la cache esta llena
 
             eliminar(cache);
-        }
+
 
         apilar(cache, aux);//si hay espacio, apilo
 
