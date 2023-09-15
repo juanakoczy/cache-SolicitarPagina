@@ -15,7 +15,7 @@ Pagina * newPagina (int numero){
 
     if (aux == NULL){
         printf("No hay espacio de memoria suficiente.");
-        exit (-1);
+        exit -1;
     }
     else{
         aux->numeroDePagina = numero;
@@ -31,7 +31,7 @@ Cache * newCache (int capacidad){
 
     if (aux == NULL){
         printf("No hay espacio de memoria suficiente.");
-        exit (-1);
+        exit -1;
     }
     else{
         aux->capacidad = capacidad;
@@ -57,10 +57,10 @@ Pagina * solicitarPagina (Cache * cache, int numeroDePagina) { //solicita una pa
 
         aux = newPagina(numeroDePagina); //aux es una nueva pagina
 
-        if (cache->capacidad == cache->tam){ //la cache esta llena
+        if (cache->capacidad == cache->tam) { //la cache esta llena
 
             eliminar(cache);
-
+        }//acá estaba la llave faltante
 
         apilar(cache, aux);//si hay espacio, apilo
 
@@ -76,13 +76,12 @@ Pagina * solicitarPagina (Cache * cache, int numeroDePagina) { //solicita una pa
         cache->tam--;
         apilar(cache, aux);
     }
-}
-return aux;
+    return aux;
 }
 
 void apilar (Cache * cache, Pagina * paginaAInsertar) {
 
-    if (cache->cache == NULL){//la cache esta vacia
+    if (cache->cache != NULL){//la cache no esta vacia
 
         cache->cache->ant = paginaAInsertar; //inserto la primera pagina
     }
@@ -113,10 +112,9 @@ void imprimir (Cache * cache){
 
     printf ("\n Paginas de la cache:\n");
 
-    while(aux->sig != NULL){
-
+    while(aux->sig != NULL){ //con esta condición no impríme la ultima, por eso generalmente usamos el for.
         printf ("%d\t", aux->numeroDePagina);
         aux = aux->sig;
-
     }
+    printf ("%d\t", aux->numeroDePagina); //aca imprime la última pagina
 }
